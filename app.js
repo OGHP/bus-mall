@@ -42,6 +42,12 @@ function renderThreeImages() {
 
 renderThreeImages();
 
+//TODO 1. Be able to receive clicks on the displayed images and track those clicks for each image.
+
+//TODO 2. Track how many times each image is displayed
+
+//TODO 3. Upon receiving a click, three new non - duplicating random images need to be automatically displayed.
+
 /********* event listener ********/
 // var imageOne = document.getElementById('image-one');
 
@@ -51,4 +57,3 @@ renderThreeImages();
 // };
 
 // imageOne.addEventListener('click', eventListenerFunctionName());
-
