@@ -10,13 +10,13 @@
 }
 
 .header {
-    background-color: green;
+    background-color: lightgrey;
     height: 7vw;
     /* margin-bottom: 20px; */
 }
 
 .results {
-    background-color: gray;
+    background-color: lightgrey;
     display: inline-block;
     height: 100%;
     margin-right: .8em;
@@ -32,7 +32,7 @@
 }
 
 img {
-    border: 2px solid teal;
+    border: 2px solid lightgrey;
 }
 
 /* TODO: (in progress) can this be on the image tag? */
@@ -41,4 +41,15 @@ main section {
     height: 45%;
     margin-right: 0.5em;
     width: 25%;
+}
+
+/* .section-paragraph {
+    height: 120px;
+    width: 660px;
+    background-color: purple;
+    margin-top: 20px;
+} */
+
+footer p {
+    text-align: center;
 }
