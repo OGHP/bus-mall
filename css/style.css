@@ -1,7 +1,7 @@
 * {
     width: 100%;
     box-sizing: border-box;
-    outline: 2px solid green;
+    /* outline: 2px solid green; */
 }
 
 .container {
@@ -41,6 +41,10 @@ main section {
     height: 45%;
     margin-right: 0.5em;
     width: 25%;
+}
+
+.section-paragraph {
+    margin-left: 30%;
 }
 
 footer p {
