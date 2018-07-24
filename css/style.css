@@ -1,8 +1,8 @@
-/* * {
+* {
     width: 100%;
     box-sizing: border-box;
-    outline: 2px solid green;
-} */
+    /* outline: 2px solid green; */
+}
 
 .container {
     margin: 0px auto;
@@ -35,7 +35,7 @@ img {
     border: 2px solid lightgrey;
 }
 
-/* TODO: (in progress) can this be on the image tag? */
+/* everything in <main> is getting these: */
 main section {
     display: inline-block;
     height: 45%;
@@ -43,12 +43,9 @@ main section {
     width: 25%;
 }
 
-/* .section-paragraph {
-    height: 120px;
-    width: 660px;
-    background-color: purple;
-    margin-top: 20px;
-} */
+.section-paragraph {
+    margin-left: 30%;
+}
 
 footer p {
     text-align: center;
