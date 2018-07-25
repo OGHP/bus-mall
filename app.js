@@ -70,16 +70,7 @@ function renderThreeImages() {
     left.title = imageData[randomIndex[0]].name;
     center.title = imageData[randomIndex[1]].name;
     right.title = imageData[randomIndex[2]].name;
-
-    // left.src = imageData[randomIndex[0]].path;
-    // center.src = imageData[randomIndex[1]].path;
-    // right.src = imageData[randomIndex[2]].path;
-
 };
-
-// console.log('what does renderThreeImages do', renderThreeImages());
-// renderThreeImages();
-
 
 function handleClick(event) {
     if (event.target.id === 'container') {
@@ -97,7 +88,7 @@ function handleClick(event) {
     totalClicks++;
     console.log(totalClicks, 'total clicks');
 
-    if (totalClicks >= 4) {
+    if (totalClicks >= 25) {
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
 
@@ -116,3 +107,28 @@ function handleClick(event) {
 
 renderThreeImages();
 container.addEventListener('click', handleClick);
+
+
+/********* canvas chart guideline ********/
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        //how do I access image name imageData.name? or do you list them all out (doesn't seem DRY) will start here
+        labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep.png', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+        datasets: [{
+            label: "Results",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45], //is this where the clicksPerImage would go?
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
