@@ -78,6 +78,8 @@ function renderThreeImages() {
     right.title = imageData[randomIndex[2]].name;
 };
 
+/********* click event handler ********/
+
 function handleClick(event) {
     if (event.target.id === 'container') {
         return alert('Remember to click on an image');
@@ -114,14 +116,15 @@ function handleClick(event) {
         //add clicks to local storage
         // localStorage.setItem()
 
-        var ulEl = document.getElementById('results-list');
+        //add list of photos and their votes
+        //might not keep this
+        // var ulEl = document.getElementById('results-list');
 
-        for (var j = 0; j < images.length; j++) {
-            var liEl = document.createElement('li');
-            liEl.textContent = imageData[j].name + ' was clicked ' + imageData[j].clicksPerImage + ' times';
-            ulEl.appendChild(liEl);
-        }
-        console.log('image data', imageData);
+        // for (var j = 0; j < images.length; j++) {
+        //     var liEl = document.createElement('li');
+        //     liEl.textContent = imageData[j].name + ' was clicked ' + imageData[j].clicksPerImage + ' times';
+        //     ulEl.appendChild(liEl);
+        // }
     }
 
     renderThreeImages();
@@ -160,7 +163,7 @@ function renderVotesPerImageChart() {
             }]
         },
         options: {
-            responsive: true,
+            responsive: false,
                 scales: {
                 yAxes: [{
                     ticks: {
