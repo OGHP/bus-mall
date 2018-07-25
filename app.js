@@ -93,6 +93,8 @@ function handleClick(event) {
         container.removeEventListener('click', handleClick);
         //show chart to user
         renderVotesPerImageChart();
+        console.log("render votes chart does what?", renderVotesPerImageChart);
+
         //add clicks to local storage
         // localStorage.setItem()
 
@@ -134,29 +136,28 @@ function renderVotesPerImageChart() {
     var chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: imageData.name,
+            labels: imageData,
             datasets: [{
-                label: "Results",
+                label: "Your Voting Results",
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: this.clicksPerImage,
+                data: clicksPerImage, //not clicksPerImage or this.clicksPerImage
             }]
         },
-
-        // // Configuration options go here
-        // options: {
-        //     responsive: true,
-        //         scales: {
-        //         yAxes: [{
-        //             ticks: {
-        //                 beginAtZero: true
-        //             }
-        //         }],
-        //             xAxes: [{
-        //                 ticks: {
-        //                     autoSkip: false
-        //                 }
-        //             }),
-        //         },
-        //     },
-}
+        options: {
+            responsive: true,
+                scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                    xAxes: [{
+                        ticks: {
+                            autoSkip: false
+                        }
+                    }],
+                },
+        },
+    });
+};
