@@ -1,7 +1,6 @@
 * {
     width: 100%;
     box-sizing: border-box;
-    /* outline: 2px solid green; */
 }
 
 .container {
@@ -14,13 +13,14 @@ h1, p, nav {
 }
 
 .header {
-    background-color: lightgrey;
-    height: 7vw;
-    /* margin-bottom: 20px; */
+    font-weight: 600;
+    font-size: xx-large;
+    padding: 2%;
+    text-align: center;
 }
 
 .instructions {
-    background-color: lightgrey;
+    background-color: rgb(175, 217, 245);
     display: inline-block;
     height: 47%;
     margin-right: .8em;
@@ -40,7 +40,6 @@ img {
     border: 2px solid lightgrey;
 }
 
-/* everything in <main> is getting these: */
 .image-section {
     display: inline-block;
     height: 45%;
@@ -50,12 +49,12 @@ img {
 
 .canvas {
     display: block;
-    margin-top: 1em;
     font-size: 2vw;
+    margin: 10px auto;
 }
 
 footer p {
-    text-align: center;
-    margin-top: 12em;
     font-size: smaller;
+    margin-top: 20em;
+    text-align: center;
 }
