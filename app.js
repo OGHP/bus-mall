@@ -97,16 +97,18 @@ function handleClick(event) {
     totalClicks++;
     console.log(totalClicks, 'total clicks');
 
-    if (totalClicks >= 25) {
+    if (totalClicks >= 4) {
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
 
-        // show results (for loop & element that creates li's (in html empty ul)\
+        var ulEl = document.getElementById('results-list');
+
         for (var j = 0; j < images.length; j++) {
             var liEl = document.createElement('li');
-            liEl.textContent = imageData[j] + 'Total times clicked' + totalClicks;;
+            liEl.textContent = imageData[j].name + ' was clicked ' + imageData[j].clicksPerImage + ' times';
             ulEl.appendChild(liEl);
         }
+        console.log('image data', imageData);
     }
 
     renderThreeImages();
