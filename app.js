@@ -3,19 +3,23 @@
 var images = ['img/bag.jpg', 'img/banana.jpg', 'img/bathroom.jpg', 'img/boots.jpg', 'img/breakfast.jpg', 'img/bubblegum.jpg', 'img/chair.jpg', 'img/cthulhu.jpg', 'img/dog-duck.jpg', 'img/dragon.jpg', 'img/pen.jpg', 'img/pet-sweep.jpg', 'img/scissors.jpg', 'img/shark.jpg', 'img/sweep.png', 'img/tauntaun.jpg', 'img/unicorn.jpg', 'img/usb.jpg', 'img/water-can.jpg', 'img/wine-glass.jpg'];
 
 var imageData = [];
+var left = document.getElementById('left');
+var center = document.getElementById('center');
+var right = document.getElementById('right');
+var container = document.getElementById('container');
 var totalClicks = 0;
-
+var previousImagesDisplayed = [];
 
 function BusMallImages(images) {
     this.name = images.split('/')[1].split('.')[0];  //just the image NAME
     this.path = images;
-    this.clicksPerImage = 0;
-    this.timesDisplayed = 0;
+    this.clicksPerImage = 0; //votes
+    this.timesImageDisplayed = 0;
 
     imageData.push(this);
 };
 
-/********* creats objects from the constructor ********/
+/********* creates objects from the constructor ********/
 function objectCreator() {
     for (var i = 0; i < images.length; i++) {
         new BusMallImages(images[i])
@@ -23,37 +27,90 @@ function objectCreator() {
 };
 objectCreator();
 
-/********* render three images ********/
-var image1 = document.getElementById('image-one');
-var image2 = document.getElementById('image-two');
-var image3 = document.getElementById('image-three');
+/********* need separate random generator ********/
+function random() {
+    return Math.floor(Math.random() * images.length);
+}
 
+/********* render three random index positions ********/
 function renderThreeImages() {
-    var randomNumber1 = Math.floor(Math.random() * (images.length - 1));
-    var randomNumber2 = Math.floor(Math.random() * (images.length - 1));
-    var randomNumber3 = Math.floor(Math.random() * (images.length - 1));
-    console.log('creates random number 1', randomNumber1);
-    console.log('creates random number 2', randomNumber2);
-    console.log('creates random number 3', randomNumber3);
-    image1.src = imageData[randomNumber1].path;
-    image2.src = imageData[randomNumber2].path;
-    image3.src = imageData[randomNumber3].path;
+    var randomIndex = [];
+
+    randomIndex[0] = random();
+    randomIndex[1] = random();
+    randomIndex[2] = random();
+
+    //preventing all duplicates
+    while (randomIndex[0] === randomIndex[1] || randomIndex[0] === randomIndex[2] || randomIndex[1] === randomIndex[2] || previousImagesDisplayed.includes(randomIndex[0]) || previousImagesDisplayed.includes(randomIndex[1]) || previousImagesDisplayed.includes(randomIndex[2])) {
+        randomIndex[0] = random();
+        randomIndex[1] = random();
+        randomIndex[2] = random();
+        console.log('a dupe was prevented');
+    }
+
+/********* render three random images ********/
+    console.log('previous image displayed', previousImagesDisplayed);
+
+    previousImagesDisplayed = [];
+
+    left.src = imageData[randomIndex[0]].path;
+    imageData[randomIndex[0]].timesImageDisplayed++;
+    //this is for comparison between what was previously displayed & what is newly displayed
+    previousImagesDisplayed.push(randomIndex[0]);
+
+    center.src = imageData[randomIndex[1]].path;
+    imageData[randomIndex[1]].timesImageDisplayed++;
+    previousImagesDisplayed.push(randomIndex[1]);
+
+    right.src = imageData[randomIndex[2]].path;
+    imageData[randomIndex[2]].timesImageDisplayed++;
+    previousImagesDisplayed.push(randomIndex[2]);
+    console.log('previous image', previousImagesDisplayed);
+
+    left.title = imageData[randomIndex[0]].name;
+    center.title = imageData[randomIndex[1]].name;
+    right.title = imageData[randomIndex[2]].name;
+
+    // left.src = imageData[randomIndex[0]].path;
+    // center.src = imageData[randomIndex[1]].path;
+    // right.src = imageData[randomIndex[2]].path;
+
 };
 
+// console.log('what does renderThreeImages do', renderThreeImages());
+// renderThreeImages();
+
+
+function handleClick(event) {
+    if (event.target.id === 'container') {
+        return alert('Remember to click on an image');
+    }
+    console.log(event.target.title);
+
+    for (var i = 0; i < imageData.length; i++) {
+        if (event.target.title === imageData[i].name) {
+            imageData[i].clicksPerImage++;
+        }
+    }
+
+    //logging total clicks
+    totalClicks++;
+    console.log(totalClicks, 'total clicks');
+
+    if (totalClicks >= 25) {
+        alert('Thanks for voting! Here come your results!');
+        container.removeEventListener('click', handleClick);
+
+        // show results (for loop & element that creates li's (in html empty ul)\
+        for (var j = 0; j < images.length; j++) {
+            var liEl = document.createElement('li');
+            liEl.textContent = imageData[j] + 'Total times clicked' + totalClicks;;
+            ulEl.appendChild(liEl);
+        }
+    }
+
+    renderThreeImages();
+}
+
 renderThreeImages();
-
-//TODO 1. Be able to receive clicks on the displayed images and track those clicks for each image.
-
-//TODO 2. Track how many times each image is displayed
-
-//TODO 3. Upon receiving a click, three new non - duplicating random images need to be automatically displayed.
-
-/********* event listener ********/
-// var imageOne = document.getElementById('image-one');
-
-
-// function eventListenerFunctionName() {
-//     increment tally for the image in the array
-// };
-
-// imageOne.addEventListener('click', eventListenerFunctionName());
+container.addEventListener('click', handleClick);
