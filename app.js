@@ -97,7 +97,7 @@ function handleClick(event) {
     totalClicks++;
     console.log(totalClicks, 'total clicks');
 
-    if (totalClicks >= 4) {
+    if (totalClicks >= 25) {
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
 
