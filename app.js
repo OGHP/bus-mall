@@ -91,6 +91,8 @@ function handleClick(event) {
     if (totalClicks >= 25) {
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
+        //show chart to user
+        renderVotesPerImageChart();
         //add clicks to local storage
         // localStorage.setItem()
 
@@ -125,32 +127,36 @@ container.addEventListener('click', handleClick);
 
 // }
 
-// var ctx = document.getElementById('myChart').getContext('2d');
-// var chart = new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//         labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep.png', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
-//         datasets: [{
-//             label: "Results",
-//             backgroundColor: 'rgb(255, 99, 132)',
-//             borderColor: 'rgb(255, 99, 132)',
-//             data: [0, 10, 5, 2, 20, 30, 45], //is this where the clicksPerImage would go?
-//         }]
-//     },
 
-//     // Configuration options go here
-//     options: {
-//         responsive: true,
-//             scales: {
-//             yAxes: [{
-//                 ticks: {
-//                     beginAtZero: true
-//                 }
-//             }],
-//                 xAxes: [{
-//                     ticks: {
-//                         autoSkip: false
-//                     }
-//                 }),
-//             },
-//         },
+// Some comments - your chart is displaying results before the user clicks on anything, and giving the chair 45 votes.
+function renderVotesPerImageChart() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: imageData.name,
+            datasets: [{
+                label: "Results",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: this.clicksPerImage,
+            }]
+        },
+
+        // // Configuration options go here
+        // options: {
+        //     responsive: true,
+        //         scales: {
+        //         yAxes: [{
+        //             ticks: {
+        //                 beginAtZero: true
+        //             }
+        //         }],
+        //             xAxes: [{
+        //                 ticks: {
+        //                     autoSkip: false
+        //                 }
+        //             }),
+        //         },
+        //     },
+}
