@@ -10,6 +10,10 @@ var container = document.getElementById('container');
 var totalClicks = 0;
 var previousImagesDisplayed = [];
 
+var labelNames = [];
+var productVotesPerImage = [];
+
+
 function BusMallImages(images) {
     this.name = images.split('/')[1].split('.')[0];  //just the image NAME
     this.path = images;
@@ -17,6 +21,8 @@ function BusMallImages(images) {
     this.timesImageDisplayed = 0;
 
     imageData.push(this);
+    labelNames.push(this.name);
+
 };
 
 /********* creates objects from the constructor ********/
@@ -89,11 +95,21 @@ function handleClick(event) {
     console.log(totalClicks, 'total clicks');
 
     if (totalClicks >= 25) {
+        //putting all the votes into their own array to appear on the chart
+        for(var h = 0; h < imageData.length; h++) {
+            //pushing votes from object into their own array
+            productVotesPerImage.push(imageData[h].clicksPerImage);
+        }
+
+        //DOM element manipulation styling
+        left.style.display = "none";
+        center.style.display = "none";
+        right.style.display = "none";
+
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
         //show chart to user
         renderVotesPerImageChart();
-        console.log("render votes chart does what?", renderVotesPerImageChart);
 
         //add clicks to local storage
         // localStorage.setItem()
@@ -129,19 +145,18 @@ container.addEventListener('click', handleClick);
 
 // }
 
-
-// Some comments - your chart is displaying results before the user clicks on anything, and giving the chair 45 votes.
 function renderVotesPerImageChart() {
     var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
+
+    var votesChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: imageData,
+            labels: labelNames,
             datasets: [{
                 label: "Your Voting Results",
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: clicksPerImage, //not clicksPerImage or this.clicksPerImage
+                data: productVotesPerImage,
             }]
         },
         options: {
@@ -156,8 +171,8 @@ function renderVotesPerImageChart() {
                         ticks: {
                             autoSkip: false
                         }
-                    }],
-                },
-        },
+                    }]
+                }
+        }
     });
-};
+}
