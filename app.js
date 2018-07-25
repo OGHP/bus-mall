@@ -70,16 +70,7 @@ function renderThreeImages() {
     left.title = imageData[randomIndex[0]].name;
     center.title = imageData[randomIndex[1]].name;
     right.title = imageData[randomIndex[2]].name;
-
-    // left.src = imageData[randomIndex[0]].path;
-    // center.src = imageData[randomIndex[1]].path;
-    // right.src = imageData[randomIndex[2]].path;
-
 };
-
-// console.log('what does renderThreeImages do', renderThreeImages());
-// renderThreeImages();
-
 
 function handleClick(event) {
     if (event.target.id === 'container') {
@@ -139,3 +130,4 @@ var chart = new Chart(ctx, {
     // Configuration options go here
     options: {}
 });
+
