@@ -91,6 +91,8 @@ function handleClick(event) {
     if (totalClicks >= 25) {
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
+        //add clicks to local storage
+        // localStorage.setItem()
 
         var ulEl = document.getElementById('results-list');
 
@@ -111,24 +113,44 @@ container.addEventListener('click', handleClick);
 
 /********* canvas chart guideline ********/
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
+// function makeChart(){
 
-    // The data for our dataset
-    data: {
-        //how do I access image name imageData.name? or do you list them all out (doesn't seem DRY) will start here
-        labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep.png', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
-        datasets: [{
-            label: "Results",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45], //is this where the clicksPerImage would go?
-        }]
-    },
+// }
 
-    // Configuration options go here
-    options: {}
-});
+// function makeChartData() {
 
+// }
+
+// function drawChart() {
+
+// }
+
+// var ctx = document.getElementById('myChart').getContext('2d');
+// var chart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//         labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep.png', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+//         datasets: [{
+//             label: "Results",
+//             backgroundColor: 'rgb(255, 99, 132)',
+//             borderColor: 'rgb(255, 99, 132)',
+//             data: [0, 10, 5, 2, 20, 30, 45], //is this where the clicksPerImage would go?
+//         }]
+//     },
+
+//     // Configuration options go here
+//     options: {
+//         responsive: true,
+//             scales: {
+//             yAxes: [{
+//                 ticks: {
+//                     beginAtZero: true
+//                 }
+//             }],
+//                 xAxes: [{
+//                     ticks: {
+//                         autoSkip: false
+//                     }
+//                 }),
+//             },
+//         },
