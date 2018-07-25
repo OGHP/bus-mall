@@ -4,6 +4,7 @@
     <title>BusMall</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 <body>
@@ -19,24 +20,22 @@
         </nav> -->
     </header>
     <main id="container" class="main-content">
-        <div class="results">
-            <p>Results</p>
-            <canvas id="myChart"></canvas>
-            <ul id="results-list"></ul>
+        <div class="instructions">
+            <p>Instructions: You will be shown several images, please select your favorite image from the choices that appear. Be sure to click on the image to have your vote counted! You'll get to vote 25 times and then seen your results. We appreciate your time in participating and will compensate you with a gift basket of your top 5 items voted on!</p>
         </div>
-        <section>
+        <section class="image-section">
             <img src="" alt="random image" id="left">
         </section>
-        <section>
+        <section class="image-section">
             <img src="" alt="random image" id="center">
         </section>
-        <section>
+        <section class="image-section">
             <img src="" alt="random image" id="right">
         </section>
-        <!-- TODO: Get this <p> to appear under the images</p> -->
-        <!-- <section class="section-paragraph">
-            <p>Meow to be let out then cats take over the world but my left donut is missing, as is my right make plans to dominate world and then take a nap, my slave human didn't give me any food so i pooped on the floor. Mice sniff other cat's butt and hang jaw half open thereafter. Hiss and stare at nothing then run suddenly away scratch leg; meow for can opener to feed me so eat the rubberband or ask to be pet then attack owners hand so stick butt in face, yet step on your keyboard while you're gaming and then turn in a circle attack the dog then pretend like nothing happened.</p>
-        </section> -->
+        <section>
+            <canvas class="canvas" id="myChart" width="1416px" height="732px" ></canvas>
+            <ul id="results-list"></ul>
+        </section>
     </main>
     <footer class="container">
         <p>&copy; Heather Palmer 2018</p>

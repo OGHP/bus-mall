@@ -88,7 +88,7 @@ function handleClick(event) {
     totalClicks++;
     console.log(totalClicks, 'total clicks');
 
-    if (totalClicks >= 4) {
+    if (totalClicks >= 25) {
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
 
@@ -118,12 +118,13 @@ var chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        //how do I access image name imageData.name? or do you list them all out (doesn't seem DRY) will start here
+        labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep.png', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
         datasets: [{
-            label: "My First dataset",
+            label: "Results",
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
+            data: [0, 10, 5, 2, 20, 30, 45], //is this where the clicksPerImage would go?
         }]
     },
 
