@@ -1,6 +1,10 @@
 * {
     width: 100%;
     box-sizing: border-box;
+
+    /* TODO: trying to debug why user can click on page and have clicks
+    register when they do not click an image EXCEPT in certain areas */
+    outline: 2px solid green;
 }
 
 .container {
