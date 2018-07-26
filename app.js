@@ -110,14 +110,15 @@ function handleClick(event) {
 
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
+
+        //sending votes to local storage
+        votesForLocalStorage();
+
         //show chart to user
         renderVotesPerImageChart();
 
-        //add clicks to local storage
-        // localStorage.setItem()
-
-        //add list of photos and their votes
-        //might not keep this
+        /********* create li's to render list of photos and their votes to page ********/
+        // (might not keep this)
         // var ulEl = document.getElementById('results-list');
 
         // for (var j = 0; j < images.length; j++) {
@@ -128,6 +129,23 @@ function handleClick(event) {
     }
 
     renderThreeImages();
+}
+
+/********* add total clicks to local storage ********/
+
+function votesForLocalStorage() {
+    var currentVotesPlusNewVotes = [];
+
+    if (localStorage.multipleSurveyVotes) {
+        for (var i = 0; i < productVotesPerImage.length; i++) {
+            currentVotesPlusNewVotes[i] = productVotesPerImage[i] + JSON.parse(localStorage.multipleSurveyVotes)[i];
+        }
+    }
+    else {
+        currentVotesPlusNewVotes = productVotesPerImage;
+    };
+    var stringifiedVotes = JSON.stringify(currentVotesPlusNewVotes);
+    localStorage.setItem('multipleSurveyVotes', stringifiedVotes); //setting to local storage
 }
 
 renderThreeImages();
