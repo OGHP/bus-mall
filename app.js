@@ -162,7 +162,7 @@ function renderVotesPerImageChart() {
         type: 'bar',
         data: {
             labels: labelNames,
-            datasets: [{
+            datasets: [{  //this is not a fixable eslintrc error
                 label: "Your Voting Results",
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
