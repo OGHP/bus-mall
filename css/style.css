@@ -1,6 +1,10 @@
 * {
     width: 100%;
     box-sizing: border-box;
+
+    /* TODO: trying to debug why user can click on page and have clicks
+    register when they do not click an image EXCEPT in certain areas */
+    /* outline: 2px solid green; */
 }
 
 .container {
@@ -22,7 +26,6 @@ h1, p, nav {
 .instructions {
     background-color: rgb(175, 217, 245);
     display: inline-block;
-    height: 47%;
     margin-right: .8em;
     padding: 1em;
     vertical-align: top;
@@ -31,7 +34,7 @@ h1, p, nav {
 
 .main-content {
     display: block;
-    height: 48vw;
+    height: 21vw;
     margin: 0 auto;
     width: 90%;
 }

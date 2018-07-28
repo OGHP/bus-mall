@@ -6,6 +6,7 @@ var imageData = [];
 var left = document.getElementById('left');
 var center = document.getElementById('center');
 var right = document.getElementById('right');
+// var divToHide = document.getElementsByClassName('instructions'); tried to set up so I can hide later on
 var container = document.getElementById('container');
 var totalClicks = 0;
 var previousImagesDisplayed = [];
@@ -103,21 +104,22 @@ function handleClick(event) {
             productVotesPerImage.push(imageData[h].clicksPerImage);
         }
 
-        //DOM element manipulation styling
+/********* DOM element manipulation styling ********/
         left.style.display = "none";
         center.style.display = "none";
         right.style.display = "none";
 
         alert('Thanks for voting! Here come your results!');
         container.removeEventListener('click', handleClick);
+
+        //sending votes to local storage
+        votesForLocalStorage();
+
         //show chart to user
         renderVotesPerImageChart();
 
-        //add clicks to local storage
-        // localStorage.setItem()
-
-        //add list of photos and their votes
-        //might not keep this
+        /********* create li's to render list of photos and their votes to page ********/
+        // (might not keep this)
         // var ulEl = document.getElementById('results-list');
 
         // for (var j = 0; j < images.length; j++) {
@@ -130,23 +132,28 @@ function handleClick(event) {
     renderThreeImages();
 }
 
+/********* add total clicks to local storage ********/
+
+function votesForLocalStorage() {
+    var currentVotesPlusNewVotes = [];
+
+    if (localStorage.multipleSurveyVotes) {
+        for (var i = 0; i < productVotesPerImage.length; i++) {
+            currentVotesPlusNewVotes[i] = productVotesPerImage[i] + JSON.parse(localStorage.multipleSurveyVotes)[i];
+        }
+    }
+    else {
+        currentVotesPlusNewVotes = productVotesPerImage;
+    };
+    var stringifiedVotes = JSON.stringify(currentVotesPlusNewVotes);
+    localStorage.setItem('multipleSurveyVotes', stringifiedVotes); //setting to local storage
+}
+
 renderThreeImages();
 container.addEventListener('click', handleClick);
 
 
-/********* canvas chart guideline ********/
-
-// function makeChart(){
-
-// }
-
-// function makeChartData() {
-
-// }
-
-// function drawChart() {
-
-// }
+/********* canvas chart ********/
 
 function renderVotesPerImageChart() {
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -155,7 +162,7 @@ function renderVotesPerImageChart() {
         type: 'bar',
         data: {
             labels: labelNames,
-            datasets: [{
+            datasets: [{  //this is not a fixable eslintrc error
                 label: "Your Voting Results",
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',

@@ -19,7 +19,8 @@
         "no-undefined": "off",
         "indent": [
             "error",
-            2
+            4
+
         ],
         "quotes": [
             "warn",
